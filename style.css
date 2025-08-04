@@ -1,119 +1,129 @@
-/* 
---- 
-שם הקובץ: style.css 
-מחבר: אוטו-קל 
-תיאור: עיצוב מודרני לאתר "אוטו-קל", עם דגש על חווית משתמש נעימה, עיצוב נקי ואפקטים עדינים. 
---- 
-*/ 
+/*
+---
+שם הקובץ: style.css
+מחבר: אוטו-קל
+תיאור: עיצוב מודרני לאתר "אוטו-קל", עם דגש על חווית משתמש נעימה, עיצוב נקי ואפקטים עדינים.
+---
+*/
 
-/* ----- כללי ----- */ 
-body { 
- font-family: 'Assistant', sans-serif; /* פונט עברי נקי וקריא */ 
- background-color: #f4f7f6; /* רקע אפרפר בהיר */ 
- color: #333; /* צבע טקסט עיקרי */ 
- line-height: 1.6; 
- margin: 0; 
- padding: 0; 
- transition: background-color 0.3s ease; /* מעבר צבע רקע עדין */ 
-} 
+/* ----- כללי ----- */
+body {
+    font-family: 'Assistant', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease;
+    
+    /* -- התוספות להצמדת הפוטר למטה -- */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* ---------------------------------- */
+}
 
-a { 
- color: #007bff; /* צבע קישורים כחול */ 
- text-decoration: none; 
- transition: color 0.3s ease; /* מעבר צבע עדין לקישורים */ 
-} 
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
-a:hover { 
- color: #0056b3; /* שינוי צבע במעבר עכבר */ 
-} 
+a:hover {
+    color: #0056b3;
+}
 
-/* ----- Header ----- */ 
-header { 
- background: #ffffff; /* רקע לבן לכותרת */ 
- color: #333; 
- padding: 2rem 1rem; 
- text-align: center; 
- border-bottom: 3px solid #007bff; /* קו תחתון כחול להדגשה */ 
- box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* הצללה עדינה */ 
-} 
+/* ----- Header ----- */
+header {
+    background: #ffffff;
+    color: #333;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 3px solid #007bff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-header h1 { 
- margin: 0; 
- font-size: 2.5rem; 
- font-weight: 700; 
-} 
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
 
-header p { 
- margin: 0.5rem 0 0; 
- font-size: 1.1rem; 
- color: #666; 
-} 
+header p {
+    margin: 0.5rem 0 0;
+    font-size: 1.1rem;
+    color: #666;
+}
 
-/* ----- Main Content ----- */ 
-main { 
- padding: 2rem 1rem; 
-} 
+/* ----- Main Content ----- */
+main {
+    padding: 2rem 1rem;
+    
+    /* -- התוספת להצמדת הפוטר למטה -- */
+    flex-grow: 1; /* מאפשר לתוכן המרכזי לגדול ולדחוף את הפוטר */
+    /* ------------------------------ */
+}
 
-#posts-container { 
- display: grid; 
- grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* פריסה גמישה של הפוסטים */ 
- gap: 1.5rem; /* רווח בין הפוסטים */ 
-} 
+#posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
 
-.post-card { 
- background: #ffffff; 
- border-radius: 8px; /* פינות מעוגלות */ 
- box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* הצללה בולטת יותר */ 
- overflow: hidden; 
- transition: transform 0.3s ease, box-shadow 0.3s ease; /* אפקט מעבר חלק */ 
-} 
+.post-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.post-card:hover { 
- transform: translateY(-5px); /* הרמה קלה במעבר עכבר */ 
- box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* הצללה מודגשת יותר במעבר */ 
-} 
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
 
-.post-card-content { 
- padding: 1.5rem; 
-} 
+.post-card-content {
+    padding: 1.5rem;
+}
 
-.post-card h2 { 
- margin-top: 0; 
- font-size: 1.5rem; 
- color: #007bff; 
-} 
+.post-card h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #007bff;
+}
 
-.post-card p { 
- color: #555; 
-} 
+.post-card p {
+    color: #555;
+}
 
-.post-card a.read-more { 
- display: inline-block; 
- margin-top: 1rem; 
- color: #007bff; 
- font-weight: bold; 
-} 
+.post-card a.read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #007bff;
+    font-weight: bold;
+}
 
-/* ----- Footer ----- */ 
-footer { 
- background: #333; 
- color: #fff; 
- text-align: center; 
- padding: 1.5rem 1rem; 
- margin-top: 2rem; 
-} 
+/* ----- Footer ----- */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    /* margin-top הוסר מכאן, flex-grow דואג לרווח */
+}
 
-footer p { 
- margin: 0; 
-} 
+footer p {
+    margin: 0;
+}
 
-/* ----- Responsive Design ----- */ 
-@media (max-width: 768px) { 
- header h1 { 
- font-size: 2rem; 
- } 
+/* ----- Responsive Design ----- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
 
- main { 
- padding: 1.5rem 0.5rem; 
- } 
-} 
+    main {
+        padding: 1.5rem 0.5rem;
+    }
+}
