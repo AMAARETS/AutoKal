@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- הגדרות GitHub ---
     // !!! יש לעדכן את הפרטים הבאים !!!
-    const githubUser = 'YOUR_GITHUB_USERNAME'; // החלף בשם המשתמש שלך בגיטהאב
-    const githubRepo = 'YOUR_REPOSITORY_NAME'; // החלף בשם הפרויקט (repository) שלך
+    const githubUser = 'AMAARETS'; // החלף בשם המשתמש שלך בגיטהאב
+    const githubRepo = 'AutoKal'; // החלף בשם הפרויקט (repository) שלך
     const pathToLinks = 'links'; // הנתיב לתיקיית קבצי ה-MD בפרויקט
 
     // בניית כתובת ה-API לקבלת תוכן התיקייה
