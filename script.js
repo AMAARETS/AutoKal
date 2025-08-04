@@ -2,42 +2,56 @@ document.addEventListener('DOMContentLoaded', function() {
     const postsContainer = document.getElementById('posts-container');
     const converter = new showdown.Converter();
 
-    // קריאת רשימת הקבצים מהקובץ files.json
-    fetch('links/files.json')
-        .then(response => response.json())
-        .then(files => {
-            files.forEach(file => {
-                // קבלת שם הקובץ ללא הסיומת
-                const postName = file.replace('.md', '');
+    // --- הגדרות GitHub ---
+    // !!! יש לעדכן את הפרטים הבאים !!!
+    const githubUser = 'YOUR_GITHUB_USERNAME'; // החלף בשם המשתמש שלך בגיטהאב
+    const githubRepo = 'YOUR_REPOSITORY_NAME'; // החלף בשם הפרויקט (repository) שלך
+    const pathToLinks = 'links'; // הנתיב לתיקיית קבצי ה-MD בפרויקט
 
-                // קריאת תוכן הקובץ
-                fetch(`links/${file}`)
+    // בניית כתובת ה-API לקבלת תוכן התיקייה
+    const apiUrl = `https://api.github.com/repos/${githubUser}/${githubRepo}/contents/${pathToLinks}`;
+
+    // קריאה ל-API של GitHub כדי לקבל את רשימת הקבצים
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`שגיאת רשת: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(files => {
+            // סינון הרשימה כדי לכלול רק קבצים שמסתיימים ב-.md
+            const mdFiles = files.filter(file => file.type === 'file' && file.name.endsWith('.md'));
+
+            mdFiles.forEach(file => {
+                const postName = file.name.replace('.md', '');
+
+                // קריאת תוכן הקובץ באמצעות ה-download_url שלו
+                fetch(file.download_url)
                     .then(response => response.text())
                     .then(markdown => {
-                        // יצירת אלמנט חדש לפוסט
                         const postElement = document.createElement('article');
                         postElement.className = 'post';
 
-                        // יצירת כותרת עם קישור
                         const titleElement = document.createElement('h2');
                         const linkElement = document.createElement('a');
-                        linkElement.href = `${postName}.html`; // קישור לדף פנימי
-                        linkElement.textContent = postName.replace(/_/g, ' '); // החלפת קו תחתון ברווח
+                        linkElement.href = `${postName}.html`;
+                        linkElement.textContent = postName.replace(/_/g, ' ');
                         titleElement.appendChild(linkElement);
 
-                        // יצירת תוכן הפוסט
                         const contentElement = document.createElement('div');
                         contentElement.innerHTML = converter.makeHtml(markdown);
 
-                        // הוספת הכותרת והתוכן לפוסט
                         postElement.appendChild(titleElement);
                         postElement.appendChild(contentElement);
 
-                        // הוספת הפוסט לקונטיינר
                         postsContainer.appendChild(postElement);
                     })
-                    .catch(error => console.error('Error fetching markdown file:', error));
+                    .catch(error => console.error('Error fetching markdown content:', error));
             });
         })
-        .catch(error => console.error('Error fetching file list:', error));
+        .catch(error => {
+            console.error('Error fetching file list from GitHub:', error);
+            postsContainer.innerHTML = `<p style="color: red; text-align: center;">לא ניתן היה לטעון את רשימת הפוסטים מ-GitHub. ודא שהפרטים שהזנת נכונים ושהפרויקט ציבורי.</p>`;
+        });
 });
