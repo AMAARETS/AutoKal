@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         const titleElement = document.createElement('h2');
                         const linkElement = document.createElement('a');
-                        linkElement.href = `${postName}.html`;
+                        linkElement.href = `${postName}`;
                         linkElement.textContent = postName.replace(/_/g, ' ');
                         titleElement.appendChild(linkElement);
 
