@@ -52,6 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error fetching file list from GitHub:', error);
-            postsContainer.innerHTML = `<p style="color: red; text-align: center;">לא ניתן היה לטעון את רשימת הפוסטים מ-GitHub. ודא שהפרטים שהזנת נכונים ושהפרויקט ציבורי.</p>`;
+            postsContainer.innerHTML = `<p style="color: red; text-align: center;">שגיאה! נסה שוב מאוחר יותר</p>`;
         });
 });
