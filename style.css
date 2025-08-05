@@ -1,129 +1,106 @@
-/*
----
-שם הקובץ: style.css
-מחבר: אוטו-קל
-תיאור: עיצוב מודרני לאתר "אוטו-קל", עם דגש על חווית משתמש נעימה, עיצוב נקי ואפקטים עדינים.
----
-*/
-
-/* ----- כללי ----- */
+/* --- הגדרות כלליות --- */
 body {
-    font-family: 'Assistant', sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease;
-    
+    background: #f8f9fa; /* רקע אפרפר בהיר ומודרני */
+    color: #333;
+    direction: rtl; /* וידוא כיווניות */
     /* -- התוספות להצמדת הפוטר למטה -- */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     /* ---------------------------------- */
+
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0056b3;
-}
-
-/* ----- Header ----- */
+/* --- כותרת עליונה --- */
 header {
-    background: #ffffff;
-    color: #333;
-    padding: 2rem 1rem;
-    text-align: center;
-    border-bottom: 3px solid #007bff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 1rem 40px; /* פחות גובה, יותר ריווח בצדדים */
+    text-align: right; /* יישור לימין */
+    border-bottom: 1px solid #e9ecef; /* קו תחתון עדין */
 }
 
 header h1 {
+    font-size: 1.7rem; /* שם אתר קטן יותר */
+    color: #343a40;
     margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
 }
 
 header p {
-    margin: 0.5rem 0 0;
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 0.9rem; /* תיאור קטן יותר */
+    color: #6c757d; /* צבע אפור לתיאור */
+    margin: 4px 0 0;
 }
 
-/* ----- Main Content ----- */
+/* --- אזור תוכן מרכזי - רשת האריחים --- */
 main {
-    padding: 2rem 1rem;
-    
-    /* -- התוספת להצמדת הפוטר למטה -- */
-    flex-grow: 1; /* מאפשר לתוכן המרכזי לגדול ולדחוף את הפוטר */
-    /* ------------------------------ */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px;
 }
 
 #posts-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    /* יצירת 2 עמודות שוות בגודלן */
+    grid-template-columns: repeat(2, 1fr);
+    /* רווח בין האריחים */
+    gap: 25px;
 }
 
-.post-card {
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* --- עיצוב האריחים --- */
+.post {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px; /* פינות מעוגלות יותר */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07); /* הצללה מודרנית */
+    /* אנימציה חלקה במעבר עכבר */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+.post:hover {
+    transform: translateY(-5px); /* אפקט ריחוף קל */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.post-card-content {
-    padding: 1.5rem;
-}
-
-.post-card h2 {
+.post h2 {
     margin-top: 0;
-    font-size: 1.5rem;
-    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
 }
 
-.post-card p {
-    color: #555;
+.post h2 a {
+    text-decoration: none;
+    color: #0056b3; /* כחול עמוק יותר */
 }
 
-.post-card a.read-more {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #007bff;
-    font-weight: bold;
+.post h2 a:hover {
+    text-decoration: underline;
 }
 
-/* ----- Footer ----- */
+/* --- כותרת תחתונה --- */
 footer {
-    background: #333;
-    color: #fff;
     text-align: center;
-    padding: 1.5rem 1rem;
-    /* margin-top הוסר מכאן, flex-grow דואג לרווח */
+    padding: 1.2rem 0; /* גובה קטן */
+    background: #343a40; /* אפור כהה */
+    color: #f8f9fa;
+    margin-top: 40px; /* מרווח מהתוכן שמעל */
 }
 
-footer p {
-    margin: 0;
-}
-
-/* ----- Responsive Design ----- */
+/* --- עיצוב רספונסיבי למובייל --- */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
+    header {
+        padding: 1rem 20px; /* ריווח צד קטן יותר במובייל */
     }
 
     main {
-        padding: 1.5rem 0.5rem;
+        padding: 20px;
+    }
+
+    /* במובייל, הצג רק עמודה אחת של אריחים */
+    #posts-container {
+        grid-template-columns: 1fr;
     }
 }
