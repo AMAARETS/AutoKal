@@ -1,67 +1,79 @@
-/* --- הגדרות כלליות --- */
+/* --- הגדרות בסיס למבנה הדף המקובע --- */
+html {
+    height: 100%;
+    overflow: hidden; /* מונע גלילה של כל הדף */
+}
+
 body {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background: #f8f9fa; /* רקע אפרפר בהיר ומודרני */
+    background: #f8f9fa;
     color: #333;
-    direction: rtl; /* וידוא כיווניות */
-    /* -- התוספות להצמדת הפוטר למטה -- */
+    direction: rtl;
+
+    /* שימוש ב-Flexbox למבנה הראשי */
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    /* ---------------------------------- */
-
 }
 
 /* --- כותרת עליונה --- */
 header {
     background: #fff;
-    padding: 1rem 40px; /* פחות גובה, יותר ריווח בצדדים */
-    text-align: right; /* יישור לימין */
-    border-bottom: 1px solid #e9ecef; /* קו תחתון עדין */
+    padding: 1rem 40px;
+    text-align: right;
+    border-bottom: 1px solid #e9ecef;
+    /* מונע מהכותרת להתכווץ */
+    flex-shrink: 0;
+    /* מוודא שהיא תמיד מעל התוכן במקרה של חפיפה */
+    z-index: 10;
 }
 
 header h1 {
-    font-size: 1.7rem; /* שם אתר קטן יותר */
+    font-size: 1.7rem;
     color: #343a40;
     margin: 0;
 }
 
 header p {
-    font-size: 0.9rem; /* תיאור קטן יותר */
-    color: #6c757d; /* צבע אפור לתיאור */
+    font-size: 0.9rem;
+    color: #6c757d;
     margin: 4px 0 0;
 }
 
-/* --- אזור תוכן מרכזי - רשת האריחים --- */
+/* --- אזור התוכן המרכזי (החלק החשוב) --- */
 main {
     max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
     padding: 40px;
+    
+    /* 1. אומר לאזור התוכן למלא את כל הגובה הפנוי */
+    flex-grow: 1;
+    /* 2. מוסיף פס גלילה רק לאזור זה במידת הצורך */
+    overflow-y: auto;
+    /* 3. כדי שהריווח (padding) יחושב נכון */
+    box-sizing: border-box; 
 }
 
 #posts-container {
     display: grid;
-    /* יצירת 2 עמודות שוות בגודלן */
     grid-template-columns: repeat(2, 1fr);
-    /* רווח בין האריחים */
     gap: 25px;
 }
 
-/* --- עיצוב האריחים --- */
+/* --- עיצוב האריחים (ללא שינוי) --- */
 .post {
     background: #fff;
     padding: 25px;
-    border-radius: 8px; /* פינות מעוגלות יותר */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07); /* הצללה מודרנית */
-    /* אנימציה חלקה במעבר עכבר */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .post:hover {
-    transform: translateY(-5px); /* אפקט ריחוף קל */
+    transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,7 +85,7 @@ main {
 
 .post h2 a {
     text-decoration: none;
-    color: #0056b3; /* כחול עמוק יותר */
+    color: #0056b3;
 }
 
 .post h2 a:hover {
@@ -83,23 +95,23 @@ main {
 /* --- כותרת תחתונה --- */
 footer {
     text-align: center;
-    padding: 1.2rem 0; /* גובה קטן */
-    background: #343a40; /* אפור כהה */
+    padding: 1.2rem 0;
+    background: #343a40;
     color: #f8f9fa;
-    margin-top: 40px; /* מרווח מהתוכן שמעל */
+    /* מונע מהפוטר להתכווץ */
+    flex-shrink: 0;
 }
 
-/* --- עיצוב רספונסיבי למובייל --- */
+/* --- עיצוב רספונסיבי למובייל (ללא שינוי מהותי) --- */
 @media (max-width: 768px) {
     header {
-        padding: 1rem 20px; /* ריווח צד קטן יותר במובייל */
+        padding: 1rem 20px;
     }
 
     main {
         padding: 20px;
     }
 
-    /* במובייל, הצג רק עמודה אחת של אריחים */
     #posts-container {
         grid-template-columns: 1fr;
     }
