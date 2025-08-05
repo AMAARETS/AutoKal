@@ -24,9 +24,7 @@ header {
     padding: 1rem 40px;
     text-align: right;
     border-bottom: 1px solid #e9ecef;
-    /* מונע מהכותרת להתכווץ */
     flex-shrink: 0;
-    /* מוודא שהיא תמיד מעל התוכן במקרה של חפיפה */
     z-index: 10;
 }
 
@@ -48,12 +46,8 @@ main {
     width: 100%;
     margin: 0 auto;
     padding: 40px;
-    
-    /* 1. אומר לאזור התוכן למלא את כל הגובה הפנוי */
     flex-grow: 1;
-    /* 2. מוסיף פס גלילה רק לאזור זה במידת הצורך */
     overflow-y: auto;
-    /* 3. כדי שהריווח (padding) יחושב נכון */
     box-sizing: border-box; 
 }
 
@@ -63,7 +57,7 @@ main {
     gap: 25px;
 }
 
-/* --- עיצוב האריחים (ללא שינוי) --- */
+/* --- עיצוב האריחים --- */
 .post {
     background: #fff;
     padding: 25px;
@@ -92,17 +86,23 @@ main {
     text-decoration: underline;
 }
 
+/* --- התוספת החדשה ליישור הפסקאות --- */
+/* זהו הסלקטור שמכוון ספציפית לתגיות <p> שנמצאות בתוך אלמנט עם קלאס .post */
+.post p {
+    text-align: justify;
+}
+
+
 /* --- כותרת תחתונה --- */
 footer {
     text-align: center;
     padding: 1.2rem 0;
     background: #343a40;
     color: #f8f9fa;
-    /* מונע מהפוטר להתכווץ */
     flex-shrink: 0;
 }
 
-/* --- עיצוב רספונסיבי למובייל (ללא שינוי מהותי) --- */
+/* --- עיצוב רספונסיבי למובייל --- */
 @media (max-width: 768px) {
     header {
         padding: 1rem 20px;
