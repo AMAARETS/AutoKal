@@ -113,7 +113,7 @@ main {
 /* --- כותרת תחתונה --- */
 footer {
     text-align: center;
-    padding: 1.2rem 0;
+    padding: 0.5rem 0;
     background: #343a40;
     color: #f8f9fa;
     flex-shrink: 0;
